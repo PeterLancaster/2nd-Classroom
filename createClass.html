@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Create a Course</title>
+		<meta name="author" content="Peter Lancaster" />
+
+		<script>
+			$(document).ready(function() {
+				localStorage["username"] = "pel37";
+				$("Create_Class").onclick(function() {
+					createCourse($("createcourse.php?username=" + localSTorage[username] + "&course_num=" + $("#cNum").val() + "&course_name=" + $("#cName").val() + "&instructor=" + $("#instr").val() + "&ta=" + $("#ta").val() + "&time=" + $("#time").val() + "&location=" + $("#location").val()));
+				});
+			});
+		</script>
+
+	</head>
+	<body>
+
+		<h5>Course Name</h5>
+		<input type="text" id="cName"/>
+		<h5>Course Number</h5>
+		<input type="text" id="cNum"/>
+		<h5>Instructor</h5>
+		<input type="text" id="instr"/>
+		<h5>TA</h5>
+		<input type="text" id="ta"/>
+		<h5>Time</h5>
+		<input type="text" id="time"/>
+		<h5>Location</h5>
+		<input type="text" id="location"/>
+		<br>
+		<br>
+		<button class="Create_Class">
+			Create Class
+		</button>
+	</body>
+</html>
+
