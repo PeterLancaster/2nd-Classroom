@@ -14,7 +14,7 @@ require_once('functions.php')
 	$(document).ready(function(){
 	localStorage["username"] = '<?php echo $_SESSION['username']; ?>';
                 //get the list of courses for the user
-                $.get("getcourses.php?username="+localStorage['username'], function(data, status) {
+                $.get("getusercourses.php?username="+localStorage['username'], function(data, status) {
                 		JSON.stringify(data);
                         console.log(data);
                         //parse data into an array
@@ -32,6 +32,7 @@ require_once('functions.php')
                         $("#user_courses").html(courseList);
                 });
 setNavigation();
+$("#main").load("calendar.php");
 
 });
 	</script>
@@ -74,7 +75,6 @@ $grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $_SESSION
 </div>
 
 <div id="main">
-LALALALAL
 </div>
 
 </body>

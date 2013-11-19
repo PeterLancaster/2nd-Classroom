@@ -12,10 +12,7 @@ if(mysqli_connect_errno($con)) {
 	$result = array();
 	
 	//grab the courses that $username is taking
-	$content = mysqli_query($con, "SELECT * 
-								   FROM (SELECT course_id 
-								   		 FROM COURSES_TAKEN 
-								   		 WHERE username = '$username') c natural join COURSES");
+	$content = mysqli_query($con, "SELECT MESSAGES.message_id, MESSAGES.subject, MESSAGES.time, USERS.first_name, USERS.last_name FROM MESSAGES, USERS WHERE MESSAGES.recipient = '$username' and MESSAGES.sender = USERS.username");
 
 	
 	if(!$content) {
@@ -23,9 +20,10 @@ if(mysqli_connect_errno($con)) {
 		} else if(mysqli_num_rows($content) > 0) {
 			
 			while($row = mysqli_fetch_array($content)) {
-
-				//createa array for this course
-				$arr = array('course_num' => $row["course_num"], 'course_name' => $row["course_name"]);
+				$sender = $row["first_name"]." ".$row["last_name"];
+				$time = $row["time"];
+				//create array for this course
+				$arr = array('message_id' => $row["message_id"], 'subject' => $row["subject"], 'sender' =>$sender, 'time' => $time);
 			
 				//push this array into the result
 				array_push($result, $arr);
@@ -37,5 +35,3 @@ if(mysqli_connect_errno($con)) {
 }
 
 ?>
-
-
